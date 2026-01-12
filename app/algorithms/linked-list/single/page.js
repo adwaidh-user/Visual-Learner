@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { CodeBlock, TextBox } from "@/components/CodeBlock";
 import PhoneScreenBlock from "@/components/phoneScreenBlocker";
+import AdBanner from "@/components/AdBanner";
 
 import P5Sketch from "./P5Sketch";
 
@@ -40,18 +41,6 @@ export default function Home() {
       } else if (n == 4) {
         setInsertForm((prev) => ({ ...prev, [key]: value }));
       }
-    }
-  };
-
-  const handleArrayInput = (value) => {
-    try {
-      const arr = value
-        .split(",")
-        .map((num) => parseInt(num.trim()))
-        .filter((num) => !isNaN(num));
-      updateForm(1, "val", arr);
-    } catch (error) {
-      console.error("Invalid array input");
     }
   };
 
@@ -525,13 +514,6 @@ Must traverse to find predecessor node
   };
 
   const inputs = [
-    {
-      inp: "Enter numbers (e.g., 10,20,30)",
-      btn: "Initialize",
-      x1: 1,
-      x2: "val",
-      isArray: true,
-    },
     { inp: "Enter value to insert", btn: "Insert", x1: 4, x2: "val" },
     { inp: "Enter value to search", btn: "Search", x1: 3, x2: "val" },
     { inp: "Enter position to delete", btn: "Delete", x1: 2, x2: "pos" },
@@ -552,11 +534,7 @@ Must traverse to find predecessor node
                     className="w-52 inpbox"
                     placeholder={item.inp}
                     onChange={(e) => {
-                      if (item.isArray) {
-                        handleArrayInput(e.target.value);
-                      } else {
-                        updateForm(item.x1, item.x2, Number(e.target.value));
-                      }
+                      updateForm(item.x1, item.x2, Number(e.target.value));
                     }}
                   />
                   <Button
@@ -630,6 +608,7 @@ Must traverse to find predecessor node
 
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-8 space-y-8">
+        <AdBanner position="bottom" size="responsive" adTest="off" />
         {/* Algorithm Info */}
         <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-8">
           <div className="text-center mb-5">
@@ -896,6 +875,14 @@ Must traverse to find predecessor node
             height="700px"
           />
         </div>
+
+        {/* Bottom Banner Ad */}
+        <AdBanner
+          position="bottom"
+          size="responsive"
+          adTest="off"
+          adSlot="9575932649"
+        />
 
         {/* Bottom Spacer */}
         <div className="h-12"></div>

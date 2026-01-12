@@ -5,8 +5,9 @@ import { useState, useEffect } from "react";
 import { Slider } from "@/components/ui/slider";
 import NumberInput from "@/components/NumberInput";
 
-import { CodeBlock, TextBox } from "@/components/CodeBlock";
+import { CodeBlock } from "@/components/CodeBlock";
 import PhoneScreenBlock from "@/components/phoneScreenBlocker";
+import AdBanner from "@/components/AdBanner";
 
 import P5Sketch from "./P5Sketch";
 
@@ -228,6 +229,7 @@ Adaptive: efficient for partially sorted arrays`,
 
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-8 space-y-8">
+        <AdBanner position="bottom" size="responsive" adTest="off" />
         {/* Algorithm Info */}
         <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-8">
           <div className="text-center mb-6">
@@ -434,6 +436,14 @@ Adaptive: efficient for partially sorted arrays`,
             </ul>
           </div>
         </div>
+
+        {/* Bottom Banner Ad */}
+        <AdBanner
+          position="bottom"
+          size="responsive"
+          adTest="off"
+          adSlot="9575932649"
+        />
 
         {/* Bottom Spacer */}
         <div className="h-12"></div>

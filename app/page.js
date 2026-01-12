@@ -1,8 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Algorithms");
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedTab = localStorage.getItem("activeTab");
+    if (savedTab) {
+      setActiveTab(savedTab);
+    }
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem("activeTab", activeTab);
+    }
+  }, [activeTab, isLoaded]);
 
   const algorithmLinkers = [
     {
@@ -137,6 +152,28 @@ export default function Home() {
         { href: "math/coordGeometry/parabola", val: "Parabola" },
       ],
     },
+    {
+      title: "Matrix",
+      icon: "🔢",
+      color: "from-purple-500 to-pink-500",
+      shadowColor: "shadow-purple-500/50",
+      links: [
+        { href: "math/matrix/basic-calc", val: "Matrix Operations" },
+        { href: "math/matrix/matrix-mult", val: "Matrix Multiplication" },
+        { href: "math/matrix/eigen-values", val: "Eigenvalues & Eigenvectors" },
+        { href: "math/matrix/psudo-inverse", val: "Pseudo Inverse" },
+        { href: "math/matrix/SVD", val: "Singular Value Decomposition" },
+      ],
+    },
+    {
+      title: "Functions",
+      icon: "📈",
+      color: "from-red-500 to-orange-500",
+      shadowColor: "shadow-red-500/50",
+      links: [
+        { href: "math/functions/graph-playground", val: "Graph Playground" },
+      ],
+    },
   ];
 
   const physicsLinkers = [
@@ -145,8 +182,14 @@ export default function Home() {
       icon: "📈",
       color: "from-orange-500 to-red-500",
       shadowColor: "shadow-orange-500/50",
+      links: [{ href: "physics/damping-function", val: "Damping Function" }],
+    },
+    {
+      title: "Light",
+      icon: "💡",
+      color: "from-yellow-500 to-orange-500",
+      shadowColor: "shadow-yellow-500/50",
       links: [
-        { href: "physics/damping-function", val: "Damping Function" },
         { href: "physics/color-mixing-light", val: "Color Mixing Light" },
         { href: "physics/color-mixing-pigment", val: "Color Mixing Pigment" },
         { href: "physics/light-refraction", val: "Light Refraction" },
@@ -302,13 +345,6 @@ export default function Home() {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Footer */}
-      <div className="text-center mt-16 text-gray-500">
-        <p className="text-sm sm:text-base">
-          Click on any algorithm to start your visual learning journey
-        </p>
       </div>
     </main>
   );
